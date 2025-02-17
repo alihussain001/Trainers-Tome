@@ -1,13 +1,23 @@
-import express, { Request, Response} from 'express';
-
-const app = express();
-const PORT = 3000;
-
-app.get('/', (req: Request, res: Response) => {
-    res.send("your application is running");
-} );
+import Express from "express";
+import { bootstrap } from "./bootstrap";
+import { mongoConnect } from "./database/config";
 
 
-app.listen(PORT, () => {
-    console.log('Server is running on http://localhost:${PORT}')
+const app = Express();
+
+
+app.use(Express.json());
+
+app.get("/", (req,res) => {
+    res.json({
+        version: 1.0,
+    });
+});
+
+bootstrap(app);
+
+mongoConnect().then(() => {
+    app.listen(3000, () => {
+        console.log("server started at port 3000")
+    });
 });
