@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 export interface IPokemon{
     name: string;
-    type: string;
+    type: string[];
     level: number;
     abilities: string[];
     stats: {
@@ -11,11 +11,12 @@ export interface IPokemon{
         defense: number;
         speed: number;
     };
+    moves: string[];
 }
 
 const PokemonSchema = new Schema<IPokemon>({
     name: { type: String, required: true, unique: true},
-    type: { type: String, required: true},
+    type: { type: [String], required: true},
     level: { type: Number, required: true, default: 1},
     abilities: { type: [String], required:true},
     stats: {
@@ -24,6 +25,7 @@ const PokemonSchema = new Schema<IPokemon>({
         defense: { type: Number, required: true},
         speed: { type: Number, required: true}
     },
+    moves: { type: [String], required: true},
 
 });
 
