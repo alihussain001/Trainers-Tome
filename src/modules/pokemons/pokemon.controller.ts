@@ -1,7 +1,7 @@
 import { Router } from "express";
 import{
     getPokemon,
-    // getPokemonById,
+    getPokemonById,
     createPokemon,
     // updatePokemon,
     // deletePokemon,
@@ -10,8 +10,9 @@ import{
 
 const router = Router();
 
+
 router.get("/", getPokemon);
-// router.get("/", getPokemonById);
+router.get("/:id", getPokemonById);
 router.post("/", createPokemon);
 // router.patch("/", updatePokemon);
 // router.delete("/", deletePokemon);

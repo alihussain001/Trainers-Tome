@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ICreatePokemon } from "./dto/pokemons.dto";
 import Pokemon, { IPokemon } from "../../models/pokemons.model";
+import { pokemonRouter } from "./pokemon.controller";
 
 // export const getPokemon = async (req: Request, res: Response) =>{
 //     try{
@@ -46,4 +47,17 @@ export const getPokemon = async (req: Request, res: Response) => {
     }
 
 };
+
+export const getPokemonById = async (req: Request, res: Response) =>{
+    const pokemonId = req.params.id;
+    const pokemon: IPokemon | null = await Pokemon.findById(pokemonId);
+
+    if(!pokemon){
+        res.status(404).json({ message: "Pokemon not found"});
+        return;
+    }
+
+    res.status(200).json(pokemon);
+
+}
 
