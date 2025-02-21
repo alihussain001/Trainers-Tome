@@ -52,7 +52,7 @@ export const getPokemon = async (req: Request, res: Response) => {
 export const getPokemonById = async (req: Request, res: Response) => {
   const pokemonId = req.params.id;
 
-  const pokemon = await Pokemon.findById(pokemonId);
+  const pokemon = await Pokemon.findOne({_id:pokemonId, isDeleted: null});
   if (pokemon) {
     res.status(200).json({pokemon});
   }else{
