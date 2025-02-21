@@ -4,7 +4,7 @@ import{
     getPokemonById,
     createPokemon,
     updatePokemon,
-    // deletePokemon,
+    deletePokemon,
 
 } from "./pokemon.service";
 
@@ -15,6 +15,6 @@ router.get("/", getPokemon);
 router.get("/:id", getPokemonById);
 router.post("/:id", createPokemon);
 router.patch("/:id", updatePokemon);
-// router.delete("/", deletePokemon);
+router.delete("/:id", deletePokemon);
 
 export { router as pokemonRouter};

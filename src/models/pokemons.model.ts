@@ -12,6 +12,7 @@ export interface IPokemon{
         speed: number;
     };
     moves: string[];
+    isDeleted: Date | null;
 }
 
 const PokemonSchema = new Schema<IPokemon>({
@@ -26,6 +27,7 @@ const PokemonSchema = new Schema<IPokemon>({
         speed: { type: Number, required: true}
     },
     moves: { type: [String], required: true},
+    isDeleted: { type: Date, default: null},
 
 });
 
