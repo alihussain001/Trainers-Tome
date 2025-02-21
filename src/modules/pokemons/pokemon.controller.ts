@@ -3,7 +3,7 @@ import{
     getPokemon,
     getPokemonById,
     createPokemon,
-    // updatePokemon,
+    updatePokemon,
     // deletePokemon,
 
 } from "./pokemon.service";
@@ -13,8 +13,8 @@ const router = Router();
 
 router.get("/", getPokemon);
 router.get("/:id", getPokemonById);
-router.post("/", createPokemon);
-// router.patch("/", updatePokemon);
+router.post("/:id", createPokemon);
+router.patch("/:id", updatePokemon);
 // router.delete("/", deletePokemon);
 
 export { router as pokemonRouter};
