@@ -62,6 +62,27 @@ export const getPokemonById = async (req: Request, res: Response) => {
   res.status(200).json(pokemon);
 };
 
+// GET POKEMON BY TYPE  
+export const getPokemonByType = async (req: Request, res: Response) => {
+    const { type } = req.query; 
+    if(!type || typeof type !== "string"){
+        res.status(400).json({ message: "Type query parameter is required"});
+        return;
+    }
+
+    const pokemonList: IPokemon[] = await Pokemon.find({
+        type, 
+        isDeleted: null,
+    });
+
+    if(pokemonList.length === 0){
+        res.status(404).json({ message: '"No Pokemon found with type: ${type}'});
+        return;
+    }
+
+    res.status(200).json(pokemonList);
+}
+
 // UPDATE POKEMON
 export const updatePokemon = async (req: Request, res: Response) => {
   const pokemonId = req.params.id;
@@ -96,3 +117,4 @@ export const deletePokemon = async (req: Request, res: Response) =>{
     }
     res.status(200).json({ message: "Pokemon deleted successfully", deletedPokemon});
 }
+
