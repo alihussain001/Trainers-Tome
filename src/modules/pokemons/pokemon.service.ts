@@ -80,6 +80,7 @@ export const updatePokemon = async (req: Request, res: Response) => {
   res.status(200).json(updatedPokemon);
 };
 
+// SOFT DELETE POKEMON 
 export const deletePokemon = async (req: Request, res: Response) =>{
     const pokemonId = req.params.id;
     
